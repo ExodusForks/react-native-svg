@@ -9,6 +9,8 @@
 #import <React/RCTBridge.h>
 #import <React/RCTUIManager.h>
 #import <React/RCTUIManagerUtils.h>
+#import <React/RCTConvert+Transform.h>
+#import <React/RCTUtils.h>
 #import "RNSVGSvgViewManager.h"
 #import "RNSVGSvgView.h"
 
@@ -36,6 +38,13 @@ RCT_CUSTOM_VIEW_PROPERTY(tintColor, id, RNSVGSvgView)
 RCT_CUSTOM_VIEW_PROPERTY(color, id, RNSVGSvgView)
 {
     view.tintColor = [RCTConvert UIColor:json];
+}
+RCT_CUSTOM_VIEW_PROPERTY(transform, CATransform3D, RNSVGSvgView)
+{
+    if (RCTIsNewArchEnabled()) {
+        return;
+    }
+    view.reactTransform = json ? [RCTConvert CATransform3D:json] : defaultView.reactTransform;
 }
 
 
