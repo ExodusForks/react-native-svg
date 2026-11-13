@@ -113,6 +113,9 @@ export default class Svg extends Shape {
         }
       : null;
 
+    const groupStyle = { ...StyleSheet.flatten(style) };
+    delete groupStyle.opacity;
+
     const tint = extractColor(color);
     return (
       <NativeSvgView
@@ -130,7 +133,7 @@ export default class Svg extends Shape {
         <G
           {...{
             children,
-            style,
+            style: groupStyle,
             font,
             transform,
             fill,
