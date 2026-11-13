@@ -46,6 +46,13 @@ RCT_CUSTOM_VIEW_PROPERTY(transform, CATransform3D, RNSVGSvgView)
     }
     view.reactTransform = json ? [RCTConvert CATransform3D:json] : defaultView.reactTransform;
 }
+RCT_CUSTOM_VIEW_PROPERTY(opacity, CGFloat, RNSVGSvgView)
+{
+    if (RCTIsNewArchEnabled()) {
+        return;
+    }
+    view.alpha = json ? [RCTConvert CGFloat:json] : defaultView.alpha;
+}
 
 
 - (void)toDataURL:(nonnull NSNumber *)reactTag options:(NSDictionary *)options callback:(RCTResponseSenderBlock)callback attempt:(int)attempt {
