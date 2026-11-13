@@ -46,6 +46,49 @@ RCT_CUSTOM_VIEW_PROPERTY(transform, CATransform3D, RNSVGSvgView)
     }
     view.reactTransform = json ? [RCTConvert CATransform3D:json] : defaultView.reactTransform;
 }
+RCT_CUSTOM_VIEW_PROPERTY(opacity, CGFloat, RNSVGSvgView)
+{
+    if (RCTIsNewArchEnabled()) {
+        return;
+    }
+    view.alpha = json ? [RCTConvert CGFloat:json] : defaultView.alpha;
+}
+RCT_CUSTOM_VIEW_PROPERTY(backgroundColor, UIColor, RNSVGSvgView)
+{
+    if (RCTIsNewArchEnabled()) {
+        view.backgroundColor = [UIColor clearColor];
+        return;
+    }
+    view.backgroundColor = json ? [RCTConvert UIColor:json] : defaultView.backgroundColor;
+}
+RCT_CUSTOM_VIEW_PROPERTY(shadowColor, CGColor, RNSVGSvgView)
+{
+    if (RCTIsNewArchEnabled()) {
+        return;
+    }
+    view.layer.shadowColor = json ? [RCTConvert CGColor:json] : defaultView.layer.shadowColor;
+}
+RCT_CUSTOM_VIEW_PROPERTY(shadowOffset, CGSize, RNSVGSvgView)
+{
+    if (RCTIsNewArchEnabled()) {
+        return;
+    }
+    view.layer.shadowOffset = json ? [RCTConvert CGSize:json] : defaultView.layer.shadowOffset;
+}
+RCT_CUSTOM_VIEW_PROPERTY(shadowOpacity, float, RNSVGSvgView)
+{
+    if (RCTIsNewArchEnabled()) {
+        return;
+    }
+    view.layer.shadowOpacity = json ? [RCTConvert float:json] : defaultView.layer.shadowOpacity;
+}
+RCT_CUSTOM_VIEW_PROPERTY(shadowRadius, CGFloat, RNSVGSvgView)
+{
+    if (RCTIsNewArchEnabled()) {
+        return;
+    }
+    view.layer.shadowRadius = json ? [RCTConvert CGFloat:json] : defaultView.layer.shadowRadius;
+}
 
 
 - (void)toDataURL:(nonnull NSNumber *)reactTag options:(NSDictionary *)options callback:(RCTResponseSenderBlock)callback attempt:(int)attempt {
